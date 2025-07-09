@@ -2,15 +2,15 @@
     class Animal{
         public $codigoAnimal;
         public $nomeAnimal;
-        public $dataNascimento;
+        public $dataAnimal;
         public $sexoAnimal;
         public $Especie;
         public $Tutor;
 
-        function __construct($codigoAnimal = null, $nomeAnimal = null, $dataNascimento = null, $sexoAnimal = null, Especie $especie = null, Tutor $tutor = null){
+        function __construct($codigoAnimal = null, $nomeAnimal = null, $dataAnimal = null, $sexoAnimal = null, Especie $especie = null, Tutor $tutor = null){
             $this->codigoAnimal = $codigoAnimal;
             $this->nomeAnimal = $nomeAnimal;
-            $this->dataNascimento = $dataNascimento;
+            $this->dataAnimal = $dataAnimal;
             $this->sexoAnimal = $sexoAnimal;
             $this->Especie = $especie; 
             $this->Tutor = $tutor;

@@ -1,47 +1,38 @@
 <?php
 require_once(__DIR__ . '/../../config/Conexao.php');
+require_once(__DIR__ . '/EspecieController.php');
+require_once(__DIR__ . '/TutorController.php');
 
-
-class AnimalController{
+class AnimalController {
 
     private $pdo;
-    public function __construct(){
+    private $especieController;
+    private $tutorController;
+   
+    public function __construct(TutorController $tutorController, EspecieController $especieController) {
         $this->pdo = Conexao::conectar();
+        $this->especieController = $especieController;
+        $this->tutorController = $tutorController;
     }
 
-    /**
-     * Busca o ID de uma espécie pelo nome. se não existir, cria uma nova
-     * @param string $nomeEspecie
-     * @return int 0 ID da especie.
-     */
-
-    private function getEspecieID($nomeEspecie){
-        // Tenta encontrar a espécie pelo nome
-        $stmt = $this->pdo->prepare('SELECT codigo_especie FROM especie WHERE nome_especie = ?');
-        $stmt->execute([$nomeEspecie]);
-        $especie = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($especie) {
-            return $especie['codigo_especie'];
-        } else {
-            $stmt = $this->pdo->prepare('INSERT INTO especie (nome_especie) VALUES (?)');
-            $stmt->execute([$nomeEspecie]);
-            return $this->pdo->lastInsertId();
-        }
-    }
-
-    public function cadastrarAnimal($nomeAnimal, $dataNascimento, $sexo, $observacao, $codigoEspecie, $codigoTutor){
+    public function cadastrarAnimal($nomeAnimal, $dataAnimal, $sexo, $observacao, $nomeEspecie, $nomeTutor, $telefoneTutor, $cpf, $endereco){
         try {
-            $sqlAnimal = 'INSERT INTO animal (nome_animal, data_nascimento, sexo, observacao, codigo_especie, codigo_tutor) 
-                    VALUES (?, ?, ?, ?, ?, ?)';
+            $codigoEspecie = $this->especieController->findOrCreateAndGetId($nomeEspecie);
+            $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $telefoneTutor, $cpf, $endereco);
 
+            if ($codigoEspecie === 0 || $codigoTutor === 0) {
+                error_log('Falha ao obter ID de espécie ou tutor para cadastrar animal.');
+                return false;
+            }
+
+            $sqlAnimal = 'INSERT INTO animal (nome_animal, data_animal, sexo, observacao, codigo_especie, codigo_tutor) VALUES (?, ?, ?, ?, ?, ?)';
             $stmtAnimal = $this->pdo->prepare($sqlAnimal);
+            return $stmtAnimal->execute([$nomeAnimal, $dataAnimal, $sexo, $observacao, $codigoEspecie, $codigoTutor]);
 
-            $sucessoAnimal = $stmtAnimal->execute([$nomeAnimal, $dataNascimento, $sexo, $observacao, $codigoEspecie, $codigoTutor]);
-            return $sucessoAnimal;
         } catch (PDOException $e) {
-            error_log('Erro ao inserir dados: ' . $e->getMessage());
+            error_log('Erro ao executar o cadastro completo do animal: ' . $e->getMessage());
             return false;
         }
     }
+
 }

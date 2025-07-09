@@ -1,6 +1,6 @@
 
 CREATE TABLE especie (
-    codigo_especie INT PRIMARY KEY AUTO_INCREMENT,
+    codigo_especie INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
     nome_especie VARCHAR(50) NOT NULL UNIQUE 
 );
 

@@ -1,0 +1,36 @@
+:root {
+    --custom-purple:#6a0dad;
+    --custom-purple-hover: #580b94;
+}
+
+.btn-purple{
+    background-color: var(--custom-purple);
+    border-color: var(--custom-purple);
+    color: #fff;
+}
+
+.btn-purple:hover{
+    background-color: var(--custom-purple-hover);
+    border-color: var(--custom-purple-hover);
+    color: #fff;
+}
+
+.form-control:focus, form-select:focus{
+    border-color: #b19cd9;
+    box-shadow: 0 0 0 0.25rem rgba(106, 13, 173, 0.25);
+}
+
+.fieldset-legend{
+    color: var(--custom-purple);
+}
+
+body{
+    background-color: #f8f9fa;
+}
+
+.form-container{
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
