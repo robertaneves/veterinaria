@@ -62,4 +62,15 @@ class AnimalController{
             return false;
         }
     }
+
+    public function editarAnimal(){
+        try {
+            $sqlEditar = 'UPDATE FROM animal SET nome_animal = ?, nome_especie = ?, data_animal = ?, sexo = ?, tutor = ? WHERE codigo_animal = ?';
+            $stmtEditar = $this->pdo->prepare($sqlEditar);
+            return $stmtEditar->execute();
+        } catch (PDOException $e) {
+            error_log('Erro ao editar animal: ' . $e->getMessage());
+
+        }
+    }
 }

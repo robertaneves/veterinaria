@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../config/Conexao.php';
 require_once __DIR__ . '/../../src/controller/EspecieController.php';
@@ -30,7 +33,7 @@ if (isset($_GET['status'])) {
             $tipoAlerta = 'success';
             break;
         case 'excluido_sucesso':
-            $mensagemAlerta = 'Animal excluído com sucesso';
+            $mensagemAlerta = 'Animal excluído com sucesso!';
             $tipoAlerta = 'success';
             break;
         case 'erro':
@@ -44,6 +47,8 @@ if (isset($_GET['status'])) {
 }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -57,6 +62,12 @@ if (isset($_GET['status'])) {
 </head>
 
 <body>
+    <?php if (!empty($mensagemAlerta) && !empty($tipoAlerta)): ?>
+        <div class="alert alert-<?php echo htmlspecialchars($tipoAlerta); ?> alert-dismissible fade show" role="alert">
+            <?php echo htmlspecialchars($mensagemAlerta); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Animais Cadastrados</h2>
@@ -88,9 +99,9 @@ if (isset($_GET['status'])) {
                                 <td><?= htmlspecialchars($animal['nome_tutor']) ?></td>
 
                                 <td class="text-center">
-                                    <!-- <a href="editar_animal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm btn-primary">
+                                    <a href="editarAnimal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
-                                    </a> -->
+                                    </a> 
 
                                     <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>" class="btn btn-sm btn-primary">
                                         <i class="bi bi-pencil-square"></i> Excluir
@@ -108,12 +119,7 @@ if (isset($_GET['status'])) {
         </div>
     </div>
 
-    <?php if (!empty($mensagemAlerta)): ?>
-        <div class="alert alert-<?= htmlspecialchars($tipoAlerta) ?> alert-dismissible fade show my-3" role="alert">
-            <?= htmlspecialchars($mensagemAlerta) ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php endif; ?>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

@@ -19,7 +19,7 @@
                 <div class="form-container">
                     <h2 class="text-center mb-4">Cadastro de Animal</h2>
 
-                    <form action="" method="POST">
+                    <form action="../../app/script/ProcessarAnimal.php" method="POST">
 
                         <fieldset class="mb-4">
                             <legend class="h5 mb-3 fw-bold fieldset-legend">Dados do Animal</legend>
