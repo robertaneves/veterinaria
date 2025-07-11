@@ -1,0 +1,54 @@
+
+        :root {
+            --custom-purple: #6a0dad;
+            --custom-purple-hover: #580b94;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .btn-purple {
+            background-color: var(--custom-purple);
+            border-color: var(--custom-purple);
+            color: #fff;
+        }
+
+        .btn-purple:hover {
+            background-color: var(--custom-purple-hover);
+            border-color: var(--custom-purple-hover);
+            color: #fff;
+        }
+
+        .table-custom-header {
+            background-color: var(--custom-purple);
+            color: #fff;
+        }
+
+        .actions a {
+            margin-right: 8px;
+            text-decoration: none;
+        }
+
+        .action-edit {
+            color: #0d6efd; /* Azul do Bootstrap */
+        }
+        .action-edit:hover {
+            color: #0a58ca;
+        }
+
+        .action-delete {
+            color: #dc3545; /* Vermelho do Bootstrap */
+        }
+        .action-delete:hover{
+            color: #bb2d3b;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+    

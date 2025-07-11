@@ -19,7 +19,7 @@
                 <div class="form-container">
                     <h2 class="text-center mb-4">Cadastro de Animal</h2>
 
-                    <form action="/veterinaria/public/script/ProcessarAnimal.php" method="POST">
+                    <form action="" method="POST">
 
                         <fieldset class="mb-4">
                             <legend class="h5 mb-3 fw-bold fieldset-legend">Dados do Animal</legend>
@@ -29,8 +29,8 @@
                                     <input type="text" class="form-control" name="nome_animal" id="nome_animal" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="data_nascimento" class="form-label">Data de Nascimento:</label>
-                                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento" required>
+                                    <label for="data_animal" class="form-label">Data de Nascimento:</label>
+                                    <input type="date" class="form-control" name="data_animal" id="data_animal" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -126,12 +126,21 @@
         </div>
     </div>
 
+    <?php if (!empty($mensagemAlerta)): ?>
+        <div class="alert alert-<?= htmlspecialchars($tipoAlerta) ?> alert-dismissible fade show my-3" role="alert">
+            <?= htmlspecialchars($mensagemAlerta) ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $('#cpf').mask('000.000.000-00', {reverse:true});
+        $(document).ready(function() {
+            $('#cpf').mask('000.000.000-00', {
+                reverse: true
+            });
             $('#telefone_tutor').mask('(00) 00000-0000');
         });
     </script>
