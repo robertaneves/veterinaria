@@ -1,0 +1,88 @@
+
+body {
+    background-color: #f8f9fa; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #495057; 
+}
+
+
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.btn-purple {
+    background-color: #6f42c1;
+    color: #ffffff;
+    border: 1px solid #6f42c1;
+    transition: all 0.3s ease; 
+}
+
+
+.btn-purple:hover {
+    background-color: #5a349a; 
+    color: #ffffff;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+
+.table-custom-header {
+    background-color: #6f42c1;
+    color: #ffffff;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+
+
+.table-custom-header th {
+    border-top: none;
+}
+
+
+.table-responsive {
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    overflow: hidden; 
+}
+
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5; 
+    cursor: pointer;
+}
+
+
+.card {
+    border: none; 
+    border-radius: 0.75rem; 
+}
+
+.card-header.bg-purple {
+    background-color: #6f42c1;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #a37ee4; 
+    box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25); 
+}
+
+
+.alert {
+    position: fixed; 
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 1050; 
+    min-width: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}

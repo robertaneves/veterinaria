@@ -1,11 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Clínica Veterinária VetCare | Cuidando de quem você ama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="public/assets/css/index.css">
 </head>
-<body>
-    
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-custom-purple flex items-center">
+                <i class="fas fa-paw mr-2"></i>
+                VetCare
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#inicio" class="text-gray-600 hover:text-custom-purple transition">Início</a>
+                <a href="#servicos" class="text-gray-600 hover:text-custom-purple transition">Serviços</a>
+                <a href="#sobre" class="text-gray-600 hover:text-custom-purple transition">Sobre Nós</a>
+                <a href="#contato" class="text-gray-600 hover:text-custom-purple transition">Contato</a>
+            </div>
+            <a href="/veterinaria/app/view/ListarAnimais.php" class="hidden md:block btn-purple px-5 py-2 rounded-lg font-semibold">
+                Área do Cliente
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#inicio" class="block py-2 text-gray-600 hover:text-custom-purple">Início</a>
+            <a href="#servicos" class="block py-2 text-gray-600 hover:text-custom-purple">Serviços</a>
+            <a href="#sobre" class="block py-2 text-gray-600 hover:text-custom-purple">Sobre Nós</a>
+            <a href="#contato" class="block py-2 text-gray-600 hover:text-custom-purple">Contato</a>
+            <a href="/veterinaria/app/view/ListarAnimais.php" class="block mt-2 text-center btn-purple px-5 py-2 rounded-lg font-semibold">
+                Área do Cliente
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="bg-white">
+            <div class="container mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight mb-4">Cuidado completo para seu melhor amigo</h1>
+                    <p class="text-lg text-gray-600 mb-8">Oferecemos serviços de alta qualidade com uma equipe apaixonada por animais. A saúde e o bem-estar do seu pet são nossa prioridade.</p>
+                    <a href="#servicos" class="btn-purple px-8 py-4 rounded-lg font-bold text-lg">Conheça Nossos Serviços</a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/E9D5FF/6B21A8?text=Veterinária+com+um+Cachorro" alt="Veterinária sorrindo e segurando um cachorro feliz" class="rounded-lg shadow-2xl mx-auto">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-center">Nossos Serviços</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-purple-100 text-custom-purple text-4xl w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Consultas</h3>
+                        <p class="text-gray-600">Check-ups completos e diagnósticos precisos para manter seu pet sempre saudável.</p>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-purple-100 text-custom-purple text-4xl w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Vacinação</h3>
+                        <p class="text-gray-600">Proteja seu companheiro contra doenças com nosso calendário de vacinação completo.</p>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-purple-100 text-custom-purple text-4xl w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cirurgias</h3>
+                        <p class="text-gray-600">Procedimentos cirúrgicos seguros com equipamentos modernos e equipe especializada.</p>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg text-center">
+                        <div class="bg-purple-100 text-custom-purple text-4xl w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6">
+                            <i class="fas fa-shower"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Banho & Tosa</h3>
+                        <p class="text-gray-600">Higiene e estética para o bem-estar e a felicidade do seu pet, com produtos de qualidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="sobre" class="bg-white py-20">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x450/C4B5FD/4C1D95?text=Equipe+VetCare" alt="Equipe da clínica veterinária sorrindo" class="rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="section-title !text-left">Apaixonados por Cuidado</h2>
+                    <p class="text-gray-600 mb-4">A VetCare nasceu do amor incondicional pelos animais. Nossa missão é oferecer um atendimento veterinário de excelência, combinando tecnologia de ponta com um tratamento humano e carinhoso.</p>
+                    <p class="text-gray-600 mb-6">Nossa equipe é formada por profissionais dedicados e em constante atualização, prontos para oferecer o melhor para a saúde e a felicidade do seu familiar de quatro patas. Aqui, cada paciente é tratado como único.</p>
+                    <div class="flex space-x-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-bold text-custom-purple">+10</p>
+                            <p class="text-gray-500">Anos de Experiência</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-bold text-custom-purple">+5.000</p>
+                            <p class="text-gray-500">Pacientes Felizes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 mb-12">Estamos prontos para atender você e seu pet. Agende uma consulta ou venha nos conhecer!</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-12">
+                    <div class="text-left bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-custom-purple">Nossa Localização</h3>
+                        <p class="text-gray-700"><i class="fas fa-map-marker-alt w-6"></i> Rua das Patas Felizes, 123</p>
+                        <p class="text-gray-700"><i class="fas fa-city w-6"></i> Bairro dos Animais, Cidade-Exemplo</p>
+                        <p class="text-gray-700 mt-4"><i class="fas fa-phone w-6"></i> (71) 3333-4444</p>
+                        <p class="text-gray-700"><i class="fas fa-envelope w-6"></i> contato@vetcare.com.br</p>
+                    </div>
+                    <div class="w-full md:w-1/2 h-64 md:h-80">
+                        <!-- Simple Map Placeholder -->
+                        <div class="bg-gray-200 w-full h-full rounded-lg shadow-md flex items-center justify-center">
+                             <img src="https://placehold.co/500x300/DDD6FE/312E81?text=Mapa+da+Localização" alt="Mapa mostrando a localização da clínica" class="w-full h-full object-cover rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="#" class="mx-3 text-2xl hover:text-purple-300 transition"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="mx-3 text-2xl hover:text-purple-300 transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="mx-3 text-2xl hover:text-purple-300 transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2024 Clínica Veterinária VetCare. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>

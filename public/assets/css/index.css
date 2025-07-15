@@ -1,0 +1,35 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .bg-custom-purple {
+            background-color: #6f42c1;
+        }
+        .text-custom-purple {
+            color: #6f42c1;
+        }
+        .border-custom-purple {
+            border-color: #6f42c1;
+        }
+        .btn-purple {
+            background-color: #6f42c1;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-purple:hover {
+            background-color: #5a349a;
+        }
+        .section-title {
+            font-size: 2.25rem; 
+            font-weight: 700;
+            margin-bottom: 2.5rem; 
+            color: #343a40;
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }

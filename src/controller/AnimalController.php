@@ -18,7 +18,7 @@ class AnimalController{
     public function cadastrarAnimal($nomeAnimal, $dataAnimal, $sexo, $observacao, $nomeEspecie, $nomeTutor, $telefoneTutor, $cpf, $endereco){
         try {
             $codigoEspecie = $this->especieController->findOrCreateAndGetId($nomeEspecie);
-            $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $telefoneTutor, $cpf, $endereco);
+            $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $cpf, $telefoneTutor, $endereco);
 
             if ($codigoEspecie === 0 || $codigoTutor === 0) {
                 error_log('Falha ao obter ID de espécie ou tutor para cadastrar animal.');
@@ -63,14 +63,57 @@ class AnimalController{
         }
     }
 
-    public function editarAnimal(){
+    public function buscarCD($codigoAnimal){
         try {
-            $sqlEditar = 'UPDATE FROM animal SET nome_animal = ?, nome_especie = ?, data_animal = ?, sexo = ?, tutor = ? WHERE codigo_animal = ?';
+            $sqlCd = "SELECT animal.*, tutor.nome_tutor FROM animal JOIN tutor ON animal.codigo_tutor = tutor.codigo_tutor WHERE animal.codigo_animal = :codigo_animal";
+            $stmtCd = $this->pdo->prepare($sqlCd);
+            $stmtCd->bindValue(':codigo_animal', $codigoAnimal);
+            $stmtCd->execute();
+            return $stmtCd->fetch(PDO::FETCH_ASSOC);
+            
+        } catch (PDOException $e) {
+            error_log('Erro ao bsucar Codigo do animal'. $e->getMessage());
+            return false;
+        }
+    }
+
+    public function editarAnimal($codigoAnimal, $nomeAnimal, $dataAnimal, $sexo, $observacao, $nomeEspecie, $nomeTutor, $cpf, $telefoneTutor, $endereco){
+        try {
+
+            $codigoEspecie = $this->especieController->findOrCreateAndGetId($nomeEspecie);
+            $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $cpf, $telefoneTutor, $endereco);
+
+            if ($codigoEspecie === 0 || $codigoTutor === 0) {
+                error_log('Falha ao obter ID de espécie ou tutor para editar animal.');
+                return false;
+            }
+
+            $sqlEditar = 'UPDATE animal 
+            SET nome_animal = :nome_animal, 
+                data_animal = :data_animal, 
+                sexo = :sexo, 
+                observacao = :observacao,
+                codigo_especie = :codigo_especie, 
+                codigo_tutor = :codigo_tutor 
+            WHERE codigo_animal = :codigo_animal';
+
+            
             $stmtEditar = $this->pdo->prepare($sqlEditar);
+            $stmtEditar->bindValue(':codigo_animal', $codigoAnimal);
+            $stmtEditar->bindValue(':nome_animal', $nomeAnimal);
+            $stmtEditar->bindValue(':data_animal', $dataAnimal);
+            $stmtEditar->bindValue(':sexo', $sexo);
+            $stmtEditar->bindValue(':observacao', $observacao);
+            $stmtEditar->bindValue(':codigo_especie', $codigoEspecie);
+            $stmtEditar->bindValue(':codigo_tutor', $codigoTutor);
             return $stmtEditar->execute();
+
+
         } catch (PDOException $e) {
             error_log('Erro ao editar animal: ' . $e->getMessage());
+            return false;
 
         }
     }
 }
+

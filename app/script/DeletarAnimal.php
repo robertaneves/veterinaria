@@ -24,7 +24,7 @@ try {
     $sucesso = $animalController->deletarAnimal($codigoAnimal);
 
     if ($sucesso) {
-        header('Location: ' . $redirectUrl . '?status=excluido_sucesso');
+        header('Location: ' . $redirectUrl . '?status=excluido');
     } else {
         header('Location: ' . $redirectUrl . '?status=erro');
     }

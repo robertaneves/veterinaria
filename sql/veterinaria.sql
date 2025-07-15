@@ -45,3 +45,40 @@ CREATE TABLE prontuario (
     FOREIGN KEY (codigo_animal) REFERENCES animal(codigo_animal),
     FOREIGN KEY (codigo_tratamento) REFERENCES tratamento(codigo_tratamento)
 );
+
+
+INSERT INTO `especie` (`nome_especie`) VALUES
+('Vira-lata (SRD)'),
+('Shih Tzu'),
+('Yorkshire'),
+('Poodle'),
+('Buldogue Francês'),
+('Golden Retriever'),
+('Labrador'),
+('Pinscher'),
+('Rottweiler'),
+('Lulu da Pomerânia');
+
+INSERT INTO `especie` (`nome_especie`) VALUES
+('Siamês'),
+('Persa'),
+('Maine Coon'),
+('Angorá'),
+('Sphynx (sem pelo)'),
+('Ragdoll'),
+('Bengal'),
+('Azul Russo'),
+('British Shorthair'),
+('Gato de Pêlo Curto');
+
+INSERT INTO `especie` (`nome_especie`) VALUES
+('Coelho'),
+('Hamster'),
+('Porquinho-da-índia'),
+('Calopsita'),
+('Canário'),
+('Papagaio'),
+('Peixe Beta'),
+('Tartaruga Tigre d''água'),
+('Jabuti'),
+('Furão (Ferret)');

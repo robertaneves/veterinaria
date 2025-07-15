@@ -32,8 +32,12 @@ if (isset($_GET['status'])) {
             $mensagemAlerta = 'Animal cadastrado com sucesso!';
             $tipoAlerta = 'success';
             break;
-        case 'excluido_sucesso':
+        case 'excluido':
             $mensagemAlerta = 'Animal excluído com sucesso!';
+            $tipoAlerta = 'success';
+            break;
+        case 'editado':
+            $mensagemAlerta = 'Animal editado com sucesso!';
             $tipoAlerta = 'success';
             break;
         case 'erro':
@@ -99,12 +103,12 @@ if (isset($_GET['status'])) {
                                 <td><?= htmlspecialchars($animal['nome_tutor']) ?></td>
 
                                 <td class="text-center">
-                                    <a href="editarAnimal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm btn-primary">
+                                    <a href="../../app/script/EditarAnimal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm btn-primary">
                                         <i class="bi bi-pencil-square"></i> Editar
-                                    </a> 
+                                    </a>
 
-                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>" class="btn btn-sm btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Excluir
+                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>" class="btn btn-sm btn-danger"> 
+                                        <i class="bi bi-trash"></i> Excluir 
                                     </a>
                                 </td>
                             </tr>
