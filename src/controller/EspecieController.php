@@ -49,13 +49,13 @@ class EspecieController
     public function listarEspecie()
     {
         try {
-            $sqlListarEspecie = 'SELECT * FROM especie ORDER BY categoria, nome_especie ASC';
+            $sqlListarEspecie = 'SELECT codigo_especie, nome_especie, categoria FROM especie ORDER BY categoria, nome_especie ASC';
 
             $stmtListarEspecie = $this->pdo->prepare($sqlListarEspecie);
             $stmtListarEspecie->execute();
             return $stmtListarEspecie->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            error_log('Erro ao listar espécies.' . $e->getMessage());
+            echo('Erro ao listar espécies.' . $e->getMessage());
             return [];
         }
     }

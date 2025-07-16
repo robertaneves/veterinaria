@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/../../src/controller/EspecieController.php';
 
-// Esta chamada agora busca as espécies já ordenadas por categoria
 $especieController = new EspecieController();
 $especies = $especieController->listarEspecie();
 
@@ -48,26 +47,26 @@ $especies = $especieController->listarEspecie();
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="nome_especie" class="form-label">Espécie:</label>
-                                    <select class="form-select" name="nome_especie" id="nome_especie" required>
+                                    <label for="codigo_especie" class="form-label">Espécie:</label>
+                                    <select class="form-select" name="codigo_especie" id="codigo_especie" required>
                                         <option value="" selected disabled>Selecione...</option>
                                         <?php
-                                        $current_category = '';
+                                        $categoria = '';
                                         foreach ($especies as $especie):
-                                            if ($especie['categoria'] !== $current_category) {
-                                                if ($current_category !== '') {
+                                            if ($especie['categoria'] !== $categoria) {
+                                                if ($categoria !== '') {
                                                     echo '</optgroup>';
                                                 }
-                                                $current_category = $especie['categoria'];
-                                                echo '<optgroup label="' . htmlspecialchars($current_category) . '">';
+                                                $categoria = $especie['categoria'];
+                                                echo '<optgroup label="' . htmlspecialchars($categoria) . '">';
                                             }
                                         ?>
-                                            <option value="<?= htmlspecialchars($especie['nome_especie']) ?>">
+                                            <option value="<?= htmlspecialchars($especie['codigo_especie']) ?>">
                                                 <?= htmlspecialchars($especie['nome_especie']) ?>
                                             </option>
                                         <?php 
                                         endforeach; 
-                                        if ($current_category !== '') {
+                                        if ($categoria !== '') {
                                             echo '</optgroup>';
                                         }
                                         ?>

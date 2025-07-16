@@ -7,24 +7,35 @@ require_once __DIR__ . '/../../src/controller/AnimalController.php';
 require_once __DIR__ . '/../../src/controller/EspecieController.php';
 require_once __DIR__ . '/../../src/controller/TutorController.php';
 
-$redirectUrl = '/veterinaria/app/view/ListarAnimais.php';
+$redirectUrl = '../../app/view/ListarAnimais.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // Animal
     $nomeAnimal = isset($_POST['nome_animal']) ? trim($_POST['nome_animal']) : '';
     $dataAnimal = isset($_POST['data_animal']) ? trim($_POST['data_animal']) : '';
     $sexo = isset($_POST['sexo']) ? trim($_POST['sexo']) : '';
-    $nomeEspecie = isset($_POST['nome_especie']) ? trim($_POST['nome_especie']) : '';
     $observacao = isset($_POST['observacao']) ? trim($_POST['observacao']) : '';
     
+    // Espécie
+    $codigoEspecie = isset($_POST['codigo_especie']) ? trim($_POST['codigo_especie']) : '';
+
+    // Tutor
     $nomeTutor = isset($_POST['nome_tutor']) ? trim($_POST['nome_tutor']) : '';
     $cpf = isset($_POST['cpf']) ? trim($_POST['cpf']) : '';
     $telefoneTutor = isset($_POST['telefone_tutor']) ? trim($_POST['telefone_tutor']) : '';
     $endereco = isset($_POST['endereco']) ? trim($_POST['endereco']) : '';
 
 
-    if (empty($nomeAnimal) || empty($dataAnimal) || empty($sexo) || empty($nomeEspecie) || empty($nomeTutor) || empty($cpf)) {
+    if (empty($nomeAnimal) || 
+        empty($dataAnimal) || 
+        empty($sexo) || 
+        empty($codigoEspecie) || 
+        empty($nomeTutor) || 
+        empty($cpf) || 
+        empty($telefoneTutor) || 
+        empty($endereco)) {
         header('Location: ' . $redirectUrl . '?status=erro_validacao');
         exit();
     }
@@ -39,10 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $dataAnimal, 
             $sexo, 
             $observacao, 
-            $nomeEspecie, 
+            $codigoEspecie, 
             $nomeTutor, 
-            $telefoneTutor, 
             $cpf, 
+            $telefoneTutor, 
             $endereco
         );
 
@@ -55,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
     } catch (PDOException $e) {
-        error_log("Erro ao criar animal: " . $e->getMessage());
+        echo ("Erro ao criar animal: " . $e->getMessage());
         header('Location: ' . $redirectUrl . '?status=erro');
         exit();
     }

@@ -75,7 +75,7 @@ if (isset($_GET['status'])) {
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Animais Cadastrados</h2>
-            <a href="CriarAnimal.php" class="btn btn-purple">Cadastrar Novo Animal</a>
+            <a href="CriacaoAnimal.php" class="btn btn-purple">Cadastrar Novo Animal</a>
         </div>
 
         <div class="table-responsive">
@@ -98,6 +98,7 @@ if (isset($_GET['status'])) {
                                 <td><?= htmlspecialchars($animal['nome_especie']) ?></td>
 
                                 <td><?= date('d/m/Y', strtotime($animal['data_animal'])) ?></td>
+                                
 
                                 <td><?= $animal['sexo'] === 'M' ? 'Macho' : 'Fêmea' ?></td>
                                 <td><?= htmlspecialchars($animal['nome_tutor']) ?></td>
@@ -107,9 +108,12 @@ if (isset($_GET['status'])) {
                                         <i class="bi bi-pencil-square"></i> Editar
                                     </a>
 
-                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>" class="btn btn-sm btn-danger"> 
-                                        <i class="bi bi-trash"></i> Excluir 
+                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Tem certeza que deseja excluir este animal?')">
+                                        <i class="bi bi-trash"></i> Excluir
                                     </a>
+
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -15,24 +15,24 @@ class AnimalController{
         $this->tutorController = $tutorController;
     }
 
-    public function cadastrarAnimal($nomeAnimal, $dataAnimal, $sexo, $observacao, $nomeEspecie, $nomeTutor, $telefoneTutor, $cpf, $endereco){
-        try {
-            $codigoEspecie = $this->especieController->findOrCreateAndGetId($nomeEspecie);
-            $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $cpf, $telefoneTutor, $endereco);
+    public function cadastrarAnimal($nomeAnimal, $dataAnimal, $sexo, $observacao, $codigoEspecie, $nomeTutor, $cpf, $telefoneTutor, $endereco) {
+    try {
+        $codigoTutor = $this->tutorController->findOrCreateAndGetId($nomeTutor, $telefoneTutor, $cpf, $endereco);
 
-            if ($codigoEspecie === 0 || $codigoTutor === 0) {
-                error_log('Falha ao obter ID de espécie ou tutor para cadastrar animal.');
-                return false;
-            }
-
-            $sqlAnimal = 'INSERT INTO animal (nome_animal, data_animal, sexo, observacao, codigo_especie, codigo_tutor) VALUES (?, ?, ?, ?, ?, ?)';
-            $stmtAnimal = $this->pdo->prepare($sqlAnimal);
-            return $stmtAnimal->execute([$nomeAnimal, $dataAnimal, $sexo, $observacao, $codigoEspecie, $codigoTutor]);
-        } catch (PDOException $e) {
-            error_log('Erro ao executar o cadastro completo do animal: ' . $e->getMessage());
+        if ($codigoEspecie == 0 || $codigoTutor == 0) {
+            error_log('Falha ao obter ID de espécie ou tutor para cadastrar animal.');
             return false;
         }
+
+        $sqlAnimal = 'INSERT INTO animal (nome_animal, data_animal, sexo, observacao, codigo_especie, codigo_tutor) VALUES (?, ?, ?, ?, ?, ?)';
+        $stmtAnimal = $this->pdo->prepare($sqlAnimal);
+        return $stmtAnimal->execute([$nomeAnimal, $dataAnimal, $sexo, $observacao, $codigoEspecie, $codigoTutor]);
+    } catch (PDOException $e) {
+        error_log('Erro ao cadastrar animal: ' . $e->getMessage());
+        return false;
     }
+}
+
 
     public function listarAnimais(){
         try {
@@ -46,7 +46,7 @@ class AnimalController{
             $stmtListar->execute();
             return $stmtListar->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            error_log('Erro ao lstar animais: ' . $e->getMessage());
+            error_log('Erro ao listar animais: ' . $e->getMessage());
             return [];
         }
     }
