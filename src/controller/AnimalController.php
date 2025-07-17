@@ -65,7 +65,7 @@ class AnimalController{
 
     public function buscarCD($codigoAnimal){
         try {
-            $sqlCd = "SELECT animal.*, tutor.nome_tutor FROM animal JOIN tutor ON animal.codigo_tutor = tutor.codigo_tutor WHERE animal.codigo_animal = :codigo_animal";
+            $sqlCd = "SELECT animal.*, tutor.nome_tutor, tutor.cpf, tutor.telefone_tutor, tutor.endereco FROM animal JOIN tutor ON animal.codigo_tutor = tutor.codigo_tutor WHERE animal.codigo_animal = :codigo_animal";
             $stmtCd = $this->pdo->prepare($sqlCd);
             $stmtCd->bindValue(':codigo_animal', $codigoAnimal);
             $stmtCd->execute();
@@ -97,8 +97,8 @@ class AnimalController{
                 codigo_tutor = :codigo_tutor 
             WHERE codigo_animal = :codigo_animal';
 
-            
             $stmtEditar = $this->pdo->prepare($sqlEditar);
+
             $stmtEditar->bindValue(':codigo_animal', $codigoAnimal);
             $stmtEditar->bindValue(':nome_animal', $nomeAnimal);
             $stmtEditar->bindValue(':data_animal', $dataAnimal);
@@ -107,7 +107,6 @@ class AnimalController{
             $stmtEditar->bindValue(':codigo_especie', $codigoEspecie);
             $stmtEditar->bindValue(':codigo_tutor', $codigoTutor);
             return $stmtEditar->execute();
-
 
         } catch (PDOException $e) {
             error_log('Erro ao editar animal: ' . $e->getMessage());
