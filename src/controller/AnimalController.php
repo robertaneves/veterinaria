@@ -36,7 +36,7 @@ class AnimalController{
 
     public function listarAnimais(){
         try {
-            $sqlListar = 'SELECT a.codigo_animal, a.nome_animal, a.data_animal, a.sexo, a.observacao, e.nome_especie, t.nome_tutor 
+            $sqlListar = 'SELECT a.codigo_animal, UPPER(a.nome_animal) AS nome_animal, a.data_animal, a.sexo, a.observacao,  e.nome_especie, UPPER (t.nome_tutor) AS nome_tutor 
               FROM animal a 
               JOIN especie e ON a.codigo_especie = e.codigo_especie
               JOIN tutor t ON a.codigo_tutor = t.codigo_tutor

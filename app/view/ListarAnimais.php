@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once __DIR__ . '/../../config/Conexao.php';
 require_once __DIR__ . '/../../src/controller/EspecieController.php';
 require_once __DIR__ . '/../../src/controller/TutorController.php';
@@ -11,7 +7,6 @@ require_once __DIR__ . '/../../src/controller/AnimalController.php';
 $animais = [];
 
 try {
-
     $conexao = Conexao::conectar();
     $especieController = new EspecieController();
     $tutorController = new TutorController();
@@ -49,9 +44,7 @@ if (isset($_GET['status'])) {
             $tipoAlerta = 'warning';
     }
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -60,66 +53,70 @@ if (isset($_GET['status'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animais Cadastrados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/assets/css/ListarAnimais.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
 <body>
-    <?php if (!empty($mensagemAlerta) && !empty($tipoAlerta)): ?>
-        <div class="alert alert-<?php echo htmlspecialchars($tipoAlerta); ?> alert-dismissible fade show" role="alert">
-            <?php echo htmlspecialchars($mensagemAlerta); ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php endif; ?>
-    <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">Animais Cadastrados</h2>
-            <a href="CriacaoAnimal.php" class="btn btn-purple">Cadastrar Novo Animal</a>
+    <div class="container container-custom">
+        <?php if (!empty($mensagemAlerta) && !empty($tipoAlerta)) : ?>
+            <div class="alert alert-<?php echo htmlspecialchars($tipoAlerta); ?> alert-dismissible fade show" role="alert">
+                <?php echo htmlspecialchars($mensagemAlerta); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
+        <div class="d-flex justify-content-between align-items-center page-header">
+            <div>
+                <h2 class="text"><i class="fa-solid fa-paw me-2"></i> Animais Cadastrados</h2>
+                <p class="mb-0">Visualize, edite ou exclua os registros de animais.</p>
+            </div>
+            <a href="CriacaoAnimal.php" class="btn btn-purple"><i class="fa-solid fa-plus me-2"></i> Cadastrar Animal</a>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
-                <thead class="table-custom-header">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
                     <tr>
                         <th>Nome do Animal</th>
-                        <th>Espécie</th>
-                        <th>Nascimento</th>
-                        <th>Sexo</th>
-                        <th>Tutor</th>
-                        <th class="text-center">Ações</th>
+                        <th colspan="3">Detalhes</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (count($animais) > 0) : ?>
                         <?php foreach ($animais as $animal) : ?>
-                            <tr class="align-middle">
-                                <td><?= htmlspecialchars($animal['nome_animal']) ?></td>
-                                <td><?= htmlspecialchars($animal['nome_especie']) ?></td>
-
-                                <td><?= date('d/m/Y', strtotime($animal['data_animal'])) ?></td>
-                                
-
-                                <td><?= $animal['sexo'] === 'M' ? 'Macho' : 'Fêmea' ?></td>
-                                <td><?= htmlspecialchars($animal['nome_tutor']) ?></td>
-
+                            <tr>
+                                <td>
+                                    <span class="badge-nome">
+                                        <i class="fa-solid fa-tag icone"></i><?= htmlspecialchars($animal['nome_animal']) ?>
+                                    </span>
+                                </td>
+                                <td class="td-icon">
+                                    <span class="badge-dado"><i class="fa-solid fa-dog icone"></i><?= htmlspecialchars($animal['nome_especie']) ?></span>
+                                    <span class="badge-dado"><i class="fa-solid fa-calendar-days icone"></i><?= date('d/m/Y', strtotime($animal['data_animal'])) ?></span>
+                                </td>
+                                <td class="td-icon">
+                                    <span class="badge-dado"><i class="fa-solid fa-<?= $animal['sexo'] === 'M' ? 'mars' : 'venus' ?> icone"></i><?= $animal['sexo'] === 'M' ? 'Macho' : 'Fêmea' ?></span>
+                                    <span class="badge-dado"><i class="fa-solid fa-user icone"></i><?= htmlspecialchars($animal['nome_tutor']) ?></span>
+                                </td>
                                 <td class="text-center">
-                                    <a href="../../app/script/EditarAnimal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm btn-primary">
-                                        <i class="bi bi-pencil-square"></i> Editar
+                                    <a href="../../app/script/EditarAnimal.php?id=<?= $animal['codigo_animal'] ?>" class="btn btn-sm" style="background-color: #6B21A8; color: white;">
+                                        <i class="fa-solid fa-pencil me-1"></i> Editar
                                     </a>
-
-                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>"
-                                        class="btn btn-sm btn-danger"
-                                        onclick="return confirm('Tem certeza que deseja excluir este animal?')">
-                                        <i class="bi bi-trash"></i> Excluir
+                                    <a href="../../app/script/DeletarAnimal.php?id=<?= $animal['codigo_animal']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir este animal?')">
+                                        <i class="fa-solid fa-trash me-1"></i> Excluir
                                     </a>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else : ?>
                         <tr>
-                            <td colspan="6" class="text-center py-4">Nenhum animal cadastrado ainda.</td>
+                            <td colspan="5" class="text-center py-4">Nenhum animal cadastrado ainda.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
@@ -127,9 +124,68 @@ if (isset($_GET['status'])) {
         </div>
     </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .container-custom {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .text {
+        color: #343a40;
+    }
+
+    .btn-purple {
+        background-color: #6B21A8;
+        color: #fff;
+    }
+
+    .btn-purple:hover {
+        background-color: #5a189a;
+        color: #fff;
+    }
+
+    .badge-nome,
+    .badge-dado {
+        background-color: #f3e8ff;
+        color: #6B21A8;
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .icone {
+        color: #6B21A8;
+        margin-right: 6px;
+    }
+
+    .td-icon {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .fa-paw{
+        color: #6B21A8;
+    }
+</style>
 
 </html>

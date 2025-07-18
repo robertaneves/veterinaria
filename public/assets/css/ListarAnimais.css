@@ -1,54 +1,55 @@
 
-        :root {
-            --custom-purple: #6a0dad;
-            --custom-purple-hover: #580b94;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
         }
 
-        body {
-            background-color: #f8f9fa;
+        .container-custom {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .text-purple {
+            color: #6B21A8;
         }
 
         .btn-purple {
-            background-color: var(--custom-purple);
-            border-color: var(--custom-purple);
+            background-color: #6B21A8;
             color: #fff;
         }
 
         .btn-purple:hover {
-            background-color: var(--custom-purple-hover);
-            border-color: var(--custom-purple-hover);
+            background-color: #5a189a;
             color: #fff;
         }
 
-        .table-custom-header {
-            background-color: var(--custom-purple);
-            color: #fff;
+        .badge-nome,
+        .badge-dado {
+            background-color: #f3e8ff;
+            color: #6B21A8;
+            font-weight: 500;
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .actions a {
-            margin-right: 8px;
-            text-decoration: none;
+        .icone {
+            color: #6B21A8;
+            margin-right: 6px;
         }
 
-        .action-edit {
-            color: #0d6efd; /* Azul do Bootstrap */
-        }
-        .action-edit:hover {
-            color: #0a58ca;
-        }
-
-        .action-delete {
-            color: #dc3545; /* Vermelho do Bootstrap */
-        }
-        .action-delete:hover{
-            color: #bb2d3b;
+        .td-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .container {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
+        .table td {
+            vertical-align: middle;
         }
-    
+
+        .page-header {
+            margin-bottom: 30px;
+        }

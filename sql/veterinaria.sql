@@ -82,6 +82,7 @@ INSERT INTO `especie` (`nome_especie`, `categoria`) VALUES
 ('Gato de Pêlo Curto', 'Gato'),
 ('Coelho', 'Outro'),
 ('Hamster', 'Outro'),
+('Penguin', 'Outro'),
 ('Porquinho-da-índia', 'Outro'),
 ('Calopsita', 'Outro'),
 ('Canário', 'Outro'),
